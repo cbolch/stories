@@ -1,0 +1,190 @@
+---
+title: "lead"
+output: html_document
+---
+
+# ------------------------------------------------------------------
+# MyDataStory - Lead Crisis
+# By Scott Cohen
+# ------------------------------------------------------------------
+
+*Core Concepts:*
+1. Importing (REVIEW)
+2. Frequencies and Proportions
+3. Bar Graph Visualization
+4. Two-Group Categorical Comparisons ()
+
+*Chapters:*
+1. Introduction
+2. ACME Consulting Arrives
+3. Intial Analysis
+4. Contact with Dr. Lead
+5. Switch is made
+6. Exercises
+
+*Learning Objectives:*
+1. Calculating Frequencies in R
+2. Calculating Proprotions in R 
+3. Visualization using Bar Graphs in R
+4. Hypothesis Testing - Two Independent Categorical Groups in R
+
+*Characters:*
+**StatCat**
+Core Traits - Old-fashioned, knows the statistics concepts very well, does not trust programming and afraid of change, confident in what he "thinks" he knows.
+
+**DataDog:**
+Core Traits - Modernized, short-attention span, scratches the surfaces with statistics, expert at programming
+
+**Dr.Lead**
+Core Traits - inherently evil, physical traits like "The Blob", infects homes, children
+
+**Citizens**
+Core Traits - concerned, motivated, wants to pretect families and community
+
+# ------------------------------------------------------------------
+# Chapter 1 - Introduction
+# ------------------------------------------------------------------
+
+Pl.
+*April 2014*
+*Newspaper article headline reads "FLint Water Bills to Drop!*
+
+Pl.
+*Text of the newspaper article with quotes/pictures from city council members, explaining the switch in water supply, proud of their acheivements*
+
+Pl.
+*Citizens ask questions about safety, city assures them it is safe, foreshadowing of the problems*
+
+Pl.
+*Setting shifts to the new piping*
+*Dr.Lead starts to slowly form*
+
+PL.
+*Dr.Lead explains motive*
+*Dr.Lead starts seeping into buildings, schools*
+
+
+Pl.
+*Several Months Later*
+*Setiing is a mother (Parent 1), looking after a sick child who has Legionnaires’ disease*
+*Empty plastic water bottles laying around*
+
+Pl.
+*Phone rings, another parent (Parent 2) is on the phone*
+*Parent 2 asks how Parent 1 child is doing*
+
+Pl.
+*Conversation changes to more frustrated tone, complaining*
+*"This is rediculous..."*
+*"We haven't had clean water in months...."*
+*"Water from the sink smells, brownish color"*
+
+Pl.
+*"Despite our protests to the city, they still assure us everything is safe*
+
+Pl.
+*Parent 2 explains that the we (citizens) have to take action in our own hands*
+*Who do we call?*
+*ACME consulting*
+
+# ------------------------------------------------------------------
+# Chapter 2: ACME Arrives
+# Goal: Use base R functions to import data (Review)
+# ------------------------------------------------------------------
+
+Pl.
+*January 2015*
+
+Pl.
+*StatCat and DataDog fly out to Flint*
+
+Pl.
+*Water samples start being collected*
+*High motivation from the citizens*
+
+Pl.
+*Water samples start being collected*
+
+Pl.
+*StatCat and DataDog start running the lab analysis to test to see the amount of lead in the water*
+
+Pl.
+*DataDog has his intern (Student) import the dataset into R*
+
+EXERCISE (Review)
+1. Set working directory
+2. Import the flint_water_samples_all.csv
+3. Provide the first 5 observations
+
+# ------------------------------------------------------------------
+# Chapter 3: Initial Analysis
+# Goal: Frequencies and Proprotions
+# ------------------------------------------------------------------
+
+Calcualte the frequencies and proportion (prevalance) of homes with elevated lead in the water
+
+More than 5 ppb is determined as unsafe
+
+Shocked realization from the team, team must contact the city to get them to change water supplies
+
+Contact with Dr.Lead, Dr.Lead tries to stop them (abruptly ends at contact)
+
+
+# ------------------------------------------------------------------
+# Chapter 4: Contact With Dr. Lead
+# Goal: Bar Graph
+# ------------------------------------------------------------------
+
+Need to integrate bar graph into the story
+
+*NEED A WAY TO DEFEAT DR.LEAD*
+*Possibly something with Citizen Science, boiling?, switching water supplies is the only way to defeat?*
+
+Gets the city to switch back water supplies
+
+
+# ------------------------------------------------------------------
+# Chapter 5: Switch is Made!
+# Goal: Contigency Table and Odds Ratio
+# ------------------------------------------------------------------
+
+Year is 2016
+
+Issues start to resolve over time, no more odor in the water
+
+More water samples are collected
+
+Re-calculate frequencies and prevalence
+
+Citizens need a way to see if the problem has resolved
+
+StatCat consults them to calculate odds ratio
+
+DataDog creates the coding
+
+Odds ratio shows water collected after the switch is signficiantly less likely to have elevated lead levels
+
+Team is happy
+
+Dr.Lead still lurks out there...
+
+# ------------------------------------------------------------------
+# Chapter 6: 
+# Goal: Exercise
+# ------------------------------------------------------------------
+
+From 2013 through 2015, pediatricians routinely tested the lead levels in the blood. Using the data provided, demonstrate that there was a signficantly higher prevalence of elevated blood lead levels in 2015 (after the switch) compared to 2013. EBLL defined as > 5 ug/dL
+REF: https://ajph.aphapublications.org/doi/pdfplus/10.2105/AJPH.2015.303003
+
+1. Import flint_data_blood_samples.csv
+2. Determine the frequency and prevalence of elevated blood for each year
+3. Illustrate using a bar graph
+4. Create a 2x2 contingency table
+5. Calculate odds ratio
+6. Interpret odds ratio
+
+
+```{r}
+
+```
+
