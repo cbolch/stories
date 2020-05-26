@@ -1,0 +1,465 @@
+---
+title: "The Carbuncle Data Debacle"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(gradethis)
+library(rmarkdown)
+library(knitr)
+library(digest)
+library(bitops)
+library(yaml)
+library(shiny)
+library(ggpubr)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r setup1, echo=FALSE, message=FALSE}
+carbuncle_lives_distance_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_lives_distance.csv')
+phosdex_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_phosdex.csv')
+```
+
+```{r setup2, echo=FALSE, message=FALSE}
+carbuncle_lives_distance_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_lives_distance.csv')
+phosdex_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_phosdex.csv')
+phosdex_lives_df <- merge(carbuncle_lives_distance_df, phosdex_df, by = "geoid")
+```
+
+```{r setup3, echo=FALSE, message=FALSE}
+phosdex_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_phosdex.csv')
+census_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/census_lives.csv')
+```
+
+```{r setup4, echo=FALSE, message=FALSE}
+phosdex_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_phosdex.csv')
+census_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/census_lives.csv')
+phosdex_census_df <- merge(census_df, phosdex_df, by = "geoid")
+```
+
+<style>
+body {background: url("images/gradient.png") repeat-x fixed}
+</style>
+
+## <font style="font-size:0px">Title Page</font>
+
+###
+
+<p align="center"><img src="images/panels/Barefoot Justine - 00TitleCard.JPG"></p>
+
+<div style="padding: 10px;padding-bottom: 0;margin-bottom: 20px;border: thin solid #8FBE70;border-left-width: 25px;background-color: #fff">
+<p><strong>Learning Objectives:</strong></p>
+<ul>
+<li>1 &#8211; Importing and Understanding Dataframes in R</li>
+<li>2 &#8211; Developing an Analysis Plan</li>
+<li>3 &#8211; Joining/Merging Dataframes in R</li>
+<li>4 &#8211; Calculating and Interpreting Pearsons Correlation Coefficient in R</li>
+</ul>
+</div>
+
+<p style="text-align: center; font-size:x-large;"><strong>Click Continue to Begin!</strong></p>
+
+## Chapter 1
+
+![](images/panels/3.PNG){width=867px; height=500px}
+
+![](images/panels/4.PNG){width=867px; height=500px}
+
+![](images/panels/Barefoot Justine - 345.gif){width=867px; height=500px}
+
+![](images/panels/8.PNG){width=867px; height=500px}
+
+![](images/panels/9.PNG){width=867px; height=500px}
+
+![](images/panels/10.PNG){width=867px; height=500px}
+
+![](images/panels/11.PNG){width=867px; height=500px}
+
+## Chapter 2
+
+![](images/panels/14.PNG){width=867px; height=500px}
+
+![](images/panels/15.PNG){width=867px; height=500px}
+
+![](images/panels/16.PNG){width=867px; height=500px}
+
+![](images/panels/17.PNG){width=867px; height=500px}
+
+![](images/panels/18.PNG){width=867px; height=500px}
+
+![](images/panels/19.PNG){width=867px; height=500px}
+
+### 
+
+![](images/panels/Barefoot Justine - DogSpotKilroy.jpg){width=100px; height=100px}
+```{r example1, exercise=TRUE, exercise.lines=4, warning=FALSE, message=FALSE}
+#Download our data and name the dataframe as carbuncle_df
+carbuncle_lives_distance_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_lives_distance.csv') 
+```
+
+
+###
+
+![](images/panels/Barefoot Justine - DogSpotSeated.jpg){width=100px; height=100px}
+Digging deeper into carbuncle's data... the dim().names(). And strc) funtions will help me figure out what's in these data frames.
+
+```{r example2, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
+#Dimensions of dataset, 4182 rows (observations) and 20 columns (variables)
+dim(carbuncle_lives_distance_df)
+
+#Names of the variables (columns)
+names(carbuncle_lives_distance_df) 
+
+#Summary of the number of observations, variables types, and first 5 values
+str(carbuncle_lives_distance_df) 
+```
+
+
+###
+
+![](images/panels/Barefoot Justine - DogSpotKilroy.jpg){width=100px; height=100px}
+But what does the data actually look like? I'll enter the dataframe name by itself in order to see the entire dataset. Let's start with the carbuncle_lives_distance_df.
+```{r example3, exercise=TRUE, exercise.setup = "setup1", exercise.lines=4, message=FALSE, warning=FALSE}
+#Full display
+carbuncle_lives_distance_df
+
+```
+
+###
+
+![](images/panels/Barefoot Justine - DogSpotKilroy.jpg){width=100px; height=100px}
+Holy kitty! Over 4,000 observations! Too much. Let's see the first observations in the carbuncle_lives_distance dataframe. I can use the head() function to look at the first 6 rows. 
+```{r example4, exercise=TRUE, exercise.setup = "setup1", exercise.lines=4, message=FALSE, warning=FALSE}
+#Default at 6 rows
+head(carbuncle_lives_distance_df) 
+```
+
+###
+
+![](images/panels/Barefoot Justine - DogSpotSeated.jpg){width=100px; height=100px}
+And the tail() function to see the last 6 rows.
+```{r example5, exercise=TRUE, exercise.setup = "setup1", exercise.lines=4, message=FALSE, warning=FALSE}
+#Default at 6 rows
+tail(carbuncle_lives_distance_df) 
+```
+
+###
+
+![](images/panels/26.PNG){width=867px; height=500px}
+
+###
+
+```{r ex1, exercise=TRUE, warning=FALSE, message=FALSE}
+#Import carbuncle_phosdex.csv from the MyDataStory GitHub, save data frame as phosdex_df
+phosdex_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_phosdex.csv')
+
+#Print the names of the variables in the dataset
+
+
+#Output the first 6 observations using the head() function
+
+```
+
+```{r ex1-solution}
+#Import carbuncle_phosdex.csv from the MyDataStory GitHub, save data frame as phosdex_df
+phosdex_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/carbuncle_phosdex.csv')
+
+#Print the names of the variables in the dataset
+names(phosdex_df)
+
+#Output the first 6 observations using the head() function
+head(phosdex_df)
+```
+
+### 
+
+<strong>Use the output above to find the phosdex concentration in census tract: 12099001801 (Palm Beach County)</strong>
+```{r ex1_1, exercise=TRUE}
+#Rounded to the nearest hundreth, enter the phosdex concentration in Palm Beach County
+
+```
+
+```{r ex1_1-check}
+grade_result(
+  fail_if(~ .result != 3.45, "You will need to reference the output from the previous question. The answer is in the 3rd observation"),
+  pass_if(~ identical(.result, 3.45), "")
+)
+```
+
+
+## Chapter 3
+
+![](images/panels/27.PNG){width=867px; height=500px}
+
+![](images/panels/28.PNG){width=867px; height=500px}
+
+![](images/panels/29.PNG){width=867px; height=500px}
+
+![](images/panels/30.PNG){width=867px; height=500px}
+
+![](images/panels/31.PNG){width=867px; height=500px}
+
+![](images/panels/32.PNG){width=867px; height=500px}
+
+![](images/panels/33.PNG){width=867px; height=500px}
+
+![](images/panels/34.PNG){width=867px; height=500px}
+
+![](images/panels/35.PNG){width=867px; height=500px}
+
+![](images/panels/36.PNG){width=867px; height=500px}
+
+![](images/panels/37.PNG){width=867px; height=500px}
+
+### 
+
+We will use a natural (i.e. inner) join to link the Illudium Phosdex data frame and the carbuncle's  dataframe using the merge() function. GEOID is going to be the variable we basing the matching on, this is because it is the unique identifier in both datasets.
+```{r example6, exercise=TRUE, exercise.setup = "setup1", exercise.lines=7, message=FALSE, warning=FALSE}
+#merge(x, y, by = ) = merge(Data Frame A, Data Frame B, Variable to base join)
+phosdex_lives_df <- merge(carbuncle_lives_distance_df, phosdex_df, by = "geoid")
+
+#Print the first 6 observations to verify the merge
+head(phosdex_lives_df)
+```
+
+
+###
+
+Now we need to visualize the data using a scatterplot as a way to illustrate a relationship between the phosdex and age variables. This can be quickly done by create a scatterplot using the plot() function.
+```{r example7, exercise=TRUE, exercise.setup = "setup2", exercise.lines=7, message=FALSE, warning=FALSE}
+plot(phosdex_lives_df$distance, phosdex_lives_df$phosdex, 
+     main="Illudium Phosdex Concentration vs. Distance From Fountain of Youth for Each Florida Census Tract", 
+     xlab="Distance", 
+     ylab="Phosdex Concentration"
+     )
+```
+
+### 
+
+Great! We got this one down. Now we just need to do the Lives vs. Phosdex concentration graph. I'll check on StatCat, I think you guys can handle this one
+
+<strong>Edit the following code to create the Lives vs. Phosdex graph using the `phosdex_lives_df` dataset. Click 'Submit Code' to check your answer.</strong>
+```{r ex2, exercise=TRUE, exercise.setup = "setup2", message=FALSE, warning=FALSE}
+plot(, ,                  
+     main = "Number of Lives vs. Phosdex Concentration for Florida Census Tract",
+     xlab = "Number of Lives",
+     ylab = "Phosdex Concentration"
+     )
+```
+
+```{r ex2-solution}
+plot(phosdex_lives_df$lives, phosdex_lives_df$phosdex, 
+     main="Number of Lives vs. Phosdex Concentration for Florida Census Tract", 
+     xlab="Number of Lives", 
+     ylab="Phosdex Concentration"
+     )
+```
+
+```{r ex2-check}
+grade_code("Good job. You are doing great! Please ignore the yellow warning message below")
+```
+
+## Chapter 4
+
+![](images/panels/40.PNG){width=867px; height=500px}
+
+![](images/panels/41.PNG){width=867px; height=500px}
+
+![](images/panels/42.PNG){width=867px; height=500px}
+
+![](images/panels/43.PNG){width=867px; height=500px}
+
+![](images/panels/44.PNG){width=867px; height=500px}
+
+![](images/panels/45.PNG){width=867px; height=500px}
+
+![](images/panels/46.PNG){width=867px; height=500px}
+
+![](images/panels/47.PNG){width=867px; height=500px}
+
+![](images/panels/48.PNG){width=867px; height=500px}
+
+###
+
+```{r example8, exercise=TRUE, exercise.setup = "setup2", exercise.lines=6, message=FALSE, warning=FALSE}
+# Calculate the Pearson's correlation coefficient
+cor(phosdex_lives_df$distance, phosdex_lives_df$phosdex)
+cor(phosdex_lives_df$lives, phosdex_lives_df$phosdex)
+```
+
+###
+
+![](images/panels/50.PNG){width=867px; height=500px}
+
+![](images/panels/51.PNG){width=867px; height=500px}
+
+![](images/panels/52.PNG){width=867px; height=500px}
+
+## Chapter 5
+
+![](images/panels/53.PNG){width=867px; height=500px}
+
+![](images/panels/54.PNG){width=867px; height=500px}
+
+![](images/panels/55.PNG){width=867px; height=500px}
+
+![](images/panels/56.PNG){width=867px; height=500px}
+
+### 
+
+<strong>Download and print the `census_lives.csv` file from GitHub using this following URL:
+`https://raw.githubusercontent.com/mydatastory/stories/master/data/census_lives.csv` </strong>
+
+```{r ex3, exercise=TRUE, warning=FALSE, message=FALSE}
+#Import census_lives.csv from the MyDataStory GitHub, save data frame as census_df
+
+
+#Print the entire dataset
+census_df
+
+```
+
+
+```{r ex3-solution}
+#Import census_lives.csv from the MyDataStory GitHub, save data frame as census_df
+census_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/census_lives.csv')
+
+#Print the entire dataset
+census_df
+
+```
+
+### 
+
+<strong>The `census_df` dataset contains the average number of lives for each census tract in the state of Florida. Combine the `census_df` with the `phosdex_df` using the by matching the census tract IDs in each file. Save this new dataset as `phosdex_census_df` and then print the first 6 rows. </strong>
+
+```{r ex4, exercise=TRUE, exercise.setup = "setup3", exercise.lines=5, message=FALSE, warning=FALSE}
+#Combine census_df and phosdex_df datasets
+
+
+#Print the first 6 observations to verify the merge
+head(phosdex_census_df)
+```
+
+```{r ex4-hint}
+"You will only need to write one line of code using the merge() function. Reference Chapter 3 for additional detail."
+```
+
+```{r ex4-solution}
+#Import census_lives.csv from the MyDataStory GitHub, save data frame as census_df
+phosdex_census_df <- merge(census_df, phosdex_df, by = "geoid")
+
+#Print the first 6 observations
+head(phosdex_census_df)
+```
+
+### 
+
+<strong>To verify the merge, use the output above to find the phosdex concentration for the census tract: 12001002220</strong>
+```{r ex4_1, exercise=TRUE}
+#Rounded to the nearest hundreth, enter the phosdex concentration in for the census tract with GEOID: 12001002220?
+
+```
+
+```{r ex4_1-check}
+grade_result(
+  fail_if(~ .result != 4.40, "You will need to reference the output from the previous question. The answer is in the 5th observation"),
+  pass_if(~ identical(.result, 4.40), "")
+)
+```
+
+### 
+
+<strong>Using the `phosdex_census_df`, write a code using the plot() function to create the new "Lives vs. Phosdex". Lives should go on the y-axis and Phosdex concentration should go on the x-axis. Click 'Submit Code' to check your answer. </strong>
+
+```{r ex5, exercise=TRUE, exercise.setup = "setup4", message=FALSE, warning=FALSE}
+plot(, ,                  
+     main = "Number of Lives vs. Phosdex Concentration for Florida Census Tract",
+     xlab = "Number of Lives",
+     ylab = "Phosdex Concentration"
+     )
+```
+
+```{r ex5-solution}
+plot(phosdex_census_df$lives, phosdex_census_df$phosdex, 
+     main="Number of Lives vs. Phosdex Concentration for Florida Census Tracts", 
+     xlab="Number of Lives", 
+     ylab="Phosdex Concentration"
+     )
+```
+
+```{r ex5-check}
+grade_code("Good job. You are doing great! Please ignore the yellow warning message below")
+```
+
+### 
+
+<strong>Using the `cor.test()` function, calculate the Pearson's correlation coefficient between the numbers of lives and phosdex concentration. </strong>
+```{r ex6, exercise=TRUE, exercise.setup = "setup4", exercise.lines=3, message=FALSE, warning=FALSE}
+#Calculate the correlation coefficient
+
+```
+
+```{r ex6-solution}
+#Calculate the correlation coefficient
+cor(phosdex_census_df$lives, phosdex_census_df$phosdex)
+```
+
+### 
+
+```{r ex7, echo=FALSE}
+question("Looking at the graph and correlation coefficient, is there any meaningful relationship between the number of lives and phosdex concentration among the census tracts in Florida?",
+  answer("Yes"),
+  answer("No", correct = TRUE)
+)
+```
+
+## Chapter 6
+
+![](images/panels/59.PNG){width=867px; height=500px}
+
+![](images/panels/60.PNG){width=867px; height=500px}
+
+![](images/panels/61.PNG){width=867px; height=500px}
+
+![](images/panels/63.PNG){width=867px; height=500px}
+
+![](images/panels/64.PNG){width=867px; height=500px}
+
+![](images/panels/65.PNG){width=867px; height=500px}
+
+![](images/panels/66.PNG){width=867px; height=500px}
+
+![](images/panels/67.PNG){width=867px; height=500px}
+
+## Reference
+
+<div style="padding: 10px;padding-bottom: 0;margin-bottom: 20px;border: thin solid #8FBE70;border-left-width: 25px;background-color: #fff">
+<p style="text-align: center; font-size:x-large;"><strong>List of R Functions by Chapter</strong></p>
+<p><u>Chapter 2 Review:</u></p>
+<ul>
+<li><strong>read.csv()</strong> &#8211; Import Comma Separated Values (.csv) datasets from a URL address or file path </li>
+<li><strong>dim()</strong> &#8211; Print the "dimensions" of the dataset (number of rows and columns)</li>
+<li><strong>names()</strong> &#8211; Print the names of all variables (columns) in the dataset</li>
+<li><strong>str()</strong> &#8211; Print detailed summary of the variables, including variable type</li>
+<li><strong>head()</strong> &#8211; Print the first 6 observations (rows) in a dataset after importing it to R</li>
+<li><strong>tail()</strong> &#8211; Print the last 6 observations (rows) in a dataset after importing it to R</li>
+</ul>
+<p><u>Chapter 3 Review:</u></p>
+<ul>
+<li><strong>merge()</strong> &#8211; Combine two datasets based on a common variable</li>
+<li><strong>plot()</strong> &#8211; Generic function for plotting scatterplots using two continous variables</li>
+</ul>
+<p><u>Chapter 4 Review:</u></p>
+<ul>
+<li><strong>cor()</strong> &#8211; Calculates the Pearson's correlation coefficient between two continuous variables</li>
+</ul>
+</div>
