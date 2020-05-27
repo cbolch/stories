@@ -25,26 +25,32 @@ knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
 
 ```{r setup1, echo=FALSE, message=FALSE}
 
-cat_species_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/cat_species.csv')
+setwd("C:/Users/cbolc/Desktop/_bird")
+cat_species_df <- read.csv('..data/cat_species.csv')
 
 ```
 
 ```{r setup2, echo=FALSE, message=FALSE}
 
-statcat_rich_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/statcat_rich.csv')
-datadog_rich_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/datadog_ha.csv')
+setwd("C:/Users/cbolc/Desktop/_bird")
+statcat_rich_df <- read.csv('..data/statcat_rich.csv')
+datadog_ha_df <- read.csv('..data/datadog_ha.csv')
 
 ```
 
 ```{r setup3, echo=FALSE, message=FALSE}
 
-statcat_rich_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/statcat_rich.csv')
-datadog_rich_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/datadog_ha.csv')
+setwd("C:/Users/cbolc/Desktop/_bird")
+statcat_rich_df <- read.csv('..data/statcat_rich.csv')
+datadog_ha_df <- read.csv('..data/datadog_ha.csv')
 
 ```
 
 ```{r setup4, echo=FALSE, message=FALSE}
 
+setwd("C:/Users/cbolc/Desktop/_bird")
+statcat_rich_df <- read.csv('..data/statcat_rich.csv')
+datadog_ha_df <- read.csv('..data/datadog_ha.csv')
 statcat_datadog_df <- merge(stastatcat_rich_df, datadog_rich_df, by = "site")
 
 ```
