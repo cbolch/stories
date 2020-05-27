@@ -25,33 +25,33 @@ knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
 
 ```{r setup1, echo=FALSE, message=FALSE}
 
-setwd("C:/Users/cbolc/Desktop/_bird")
-cat_species_df <- read.csv('..data/cat_species.csv')
+setwd("C:/Users/cbolc/Desktop/stories/_bird")
+cat_species_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/cat_species.csv')
 
 ```
 
 ```{r setup2, echo=FALSE, message=FALSE}
 
-setwd("C:/Users/cbolc/Desktop/_bird")
-statcat_rich_df <- read.csv('..data/statcat_rich.csv')
-datadog_ha_df <- read.csv('..data/datadog_ha.csv')
+#setwd("C:/Users/cbolc/Desktop/_bird")
+statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
+datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
 
 ```
 
 ```{r setup3, echo=FALSE, message=FALSE}
 
-setwd("C:/Users/cbolc/Desktop/_bird")
-statcat_rich_df <- read.csv('..data/statcat_rich.csv')
-datadog_ha_df <- read.csv('..data/datadog_ha.csv')
+#setwd("C:/Users/cbolc/Desktop/_bird")
+statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
+datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
 
 ```
 
 ```{r setup4, echo=FALSE, message=FALSE}
 
-setwd("C:/Users/cbolc/Desktop/_bird")
-statcat_rich_df <- read.csv('..data/statcat_rich.csv')
-datadog_ha_df <- read.csv('..data/datadog_ha.csv')
-statcat_datadog_df <- merge(stastatcat_rich_df, datadog_rich_df, by = "site")
+#setwd("C:/Users/cbolc/Desktop/_bird")
+statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
+datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = "site")
 
 ```
 
@@ -62,8 +62,6 @@ body {background: url("images/gradient.png") repeat-x fixed}
 ## <font style="font-size:0px">Title Page</font>
 
 ###
-
-#####<p align="center"><img src="images/panels/Barefoot Justine - 00TitleCard.JPG"></p>
 
 <div style="padding: 10px;padding-bottom: 0;margin-bottom: 20px;border: thin solid #8FBE70;border-left-width: 25px;background-color: #fff">
 <p><strong>Learning Objectives:</strong></p>
@@ -93,10 +91,21 @@ body {background: url("images/gradient.png") repeat-x fixed}
 
 ```{r example1, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
-#Before Statcat and Datadog goe out into the field to collect the data, they would like to look at the data that has already been collected by the cats. Statcat has the data provided to him and he is interested in looking at the different habitat types. He first needs to load the relevant packages and read the data into R. 
+#Before Statcat and Datadog goe out into the field to collect the data, 
+#they would like to look at the data that has already been collected by the cats. 
+#Statcat has the data provided to him and he is interested in looking at the 
+#different habitat types. He first needs to load the relevant packages and 
+#read the data into R. 
 
 #Download and load in the data as
-cat_species_df <- read.csv('https://raw.githubusercontent.com/mydatastory/stories/master/data/cat_species.csv')
+cat_species_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/cat_species.csv')
+
+#Look at the first 6 rows of data
+head(cat_species_df)
+
+```
+
+```{r example2, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
 #table of habitat types
 counts_habitat <- table(cat_species_df$habitat)
