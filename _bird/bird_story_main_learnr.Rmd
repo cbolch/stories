@@ -75,19 +75,19 @@ body {background: url("images/gradient.png") repeat-x fixed}
 
 ## Chapter 1
 
-![](images/panel 1.PNG){width=867px; height=500px}
+![](images/panel 1.png){width=867px; height=500px}
 
-![](images/panel 2.PNG){width=867px; height=500px}
+![](images/panel 2.png){width=867px; height=500px}
 
-![](images/panel 3.gif){width=867px; height=500px}
+![](images/panel 3.png){width=867px; height=500px}
 
-![](images/panel 4.PNG){width=867px; height=500px}
+![](images/panel 4.png){width=867px; height=500px}
 
-![](images/panel 5.PNG){width=867px; height=500px}
+![](images/panel 5.png){width=867px; height=500px}
 
-![](images/panel 6.PNG){width=867px; height=500px}
+![](images/panel 6.png){width=867px; height=500px}
 
-![](images/panel 7.PNG){width=867px; height=500px}
+![](images/panel 7.png){width=867px; height=500px}
 
 ```{r example1, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
@@ -146,13 +146,13 @@ barplot(counts_habitat,
 
 ## Chapter 2
 
-![](images/panel 12.PNG){width=867px; height=500px}
+![](images/panel 12.png){width=867px; height=500px}
 
-![](images/panel 13.PNG){width=867px; height=500px}
+![](images/panel 13.png){width=867px; height=500px}
 
-![](images/panel 14.gif){width=867px; height=500px}
+![](images/panel 14.png){width=867px; height=500px}
 
-![](images/panel 15.PNG){width=867px; height=500px}
+![](images/panel 15.png){width=867px; height=500px}
 
 <strong>StatCat and DataDog see that they need more data which sets up the framing for the research questions.</strong>
 
