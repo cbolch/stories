@@ -91,7 +91,7 @@ body {background: url("images/gradient.png") repeat-x fixed}
 
 ```{r example1, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
-#Before Statcat and Datadog goe out into the field to collect the data, 
+#Before StatCat and DataDog goe out into the field to collect the data, 
 #they would like to look at the data that has already been collected by the cats. 
 #Statcat has the data provided to him and he is interested in looking at the 
 #different habitat types. He first needs to load the relevant packages and 
@@ -120,7 +120,6 @@ barplot(counts_habitat,
 
 ```
 
-
 <strong> Comprehension Questions </strong>
 ```{r example3, exercise=TRUE, exercise.lines=5, message=FALSE, warning=FALSE}
 
@@ -147,58 +146,60 @@ barplot(counts_habitat,
 
 ## Chapter 2
 
+![](images/panel 12.PNG){width=867px; height=500px}
 
-<strong>The `census_df` dataset contains the average number of lives for each census tract in the state of Florida. Combine the `census_df` with the `phosdex_df` using the by matching the census tract IDs in each file. Save this new dataset as `phosdex_census_df` and then print the first 6 rows. </strong>
+![](images/panel 13.PNG){width=867px; height=500px}
 
-```{r ex4, exercise=TRUE, exercise.setup = "setup3", exercise.lines=5, message=FALSE, warning=FALSE}
-#Combine census_df and phosdex_df datasets
+![](images/panel 14.gif){width=867px; height=500px}
 
+![](images/panel 15.PNG){width=867px; height=500px}
 
-#Print the first 6 observations to verify the merge
-head(phosdex_census_df)
-```
-
-```{r ex4-hint}
-"You will only need to write one line of code using the merge() function. Reference Chapter 3 for additional detail."
-```
-
-```{r ex4-solution}
-#Import census_lives.csv from the MyDataStory GitHub, save data frame as census_df
-phosdex_census_df <- merge(census_df, phosdex_df, by = "geoid")
-
-#Print the first 6 observations
-head(phosdex_census_df)
-```
-
-###
-
-<strong>To verify the merge, use the output above to find the phosdex concentration for the census tract: 12001002220</strong>
-```{r ex4_1, exercise=TRUE}
-#Rounded to the nearest hundreth, enter the phosdex concentration in for the census tract with GEOID: 12001002220?
-
-```
-
-
-## Reference
+<strong>StatCat and DataDog see that they need more data which sets up the framing for the research questions.</strong>
 
 <div style="padding: 10px;padding-bottom: 0;margin-bottom: 20px;border: thin solid #8FBE70;border-left-width: 25px;background-color: #fff">
-<p style="text-align: center; font-size:x-large;"><strong>List of R Functions by Chapter</strong></p>
-<p><u>Chapter 2 Review:</u></p>
+<p><strong>Research Questions:</strong></p>
 <ul>
-<li><strong>read.csv()</strong> &#8211; Import Comma Separated Values (.csv) datasets from a URL address or file path </li>
-<li><strong>dim()</strong> &#8211; Print the "dimensions" of the dataset (number of rows and columns)</li>
-<li><strong>names()</strong> &#8211; Print the names of all variables (columns) in the dataset</li>
-<li><strong>str()</strong> &#8211; Print detailed summary of the variables, including variable type</li>
-<li><strong>head()</strong> &#8211; Print the first 6 observations (rows) in a dataset after importing it to R</li>
-<li><strong>tail()</strong> &#8211; Print the last 6 observations (rows) in a dataset after importing it to R</li>
-</ul>
-<p><u>Chapter 3 Review:</u></p>
-<ul>
-<li><strong>merge()</strong> &#8211; Combine two datasets based on a common variable</li>
-<li><strong>plot()</strong> &#8211; Generic function for plotting scatterplots using two continous variables</li>
-</ul>
-<p><u>Chapter 4 Review:</u></p>
-<ul>
-<li><strong>cor()</strong> &#8211; Calculates the Pearson's correlation coefficient between two continuous variables</li>
+<li>1 &#8211; What is the relationship between species richness and habitat types (forest, shrubs, trees, fragments, etc.)?</li>
+<li>2 &#8211; What is the relationship between species richness and area for all habitats?</li>
+<li>3 &#8211; What is the relationship between species richness and area for specific habitats of interest?</li>
 </ul>
 </div>
+
+<strong>StatCat thinks that looking at the types of species and the habitat types (research question 1) will give him a better idea of what is going on in the data. DataDog decides to collect data with the birds about the size of the habitat areas.</strong>
+
+
+<strong> DataDog: So what do we need to do to collect this data? StatCat: Here is the additional data we must collect!</strong>
+
+<div style="padding: 10px;padding-bottom: 0;margin-bottom: 20px;border: thin solid #8FBE70;border-left-width: 25px;background-color: #fff">
+<p><strong>Data Collection Variables:</strong></p>
+<ul>
+<li>1 &#8211; Site</li>
+<li>2 &#8211; Block</li>
+<li>3 &#8211; Elevation</li>
+<li>3 &#8211; Habtitat Type</li>
+<li>3 &#8211; Ha (size of habitat area)- DataDog is collecting</li>
+<li>3 &#8211; Richness- StatCat is collecting</li>
+</ul>
+</div>
+
+
+```{r example5, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#The setup of the data collection form is important to plan out before 
+#StatCat and DataDog start collecting data.
+
+#Question 3 
+#Take a few minutes and sketch out what you think a data collection 
+#paper form should look like for StatCat or DataDog. 
+
+
+```
+
+
+
+## Chapter 3
+
+# ```{r ex4-hint}
+# "You will only need to write one line of code using the merge() function. Reference Chapter 3 for additional detail."
+# ```
+
