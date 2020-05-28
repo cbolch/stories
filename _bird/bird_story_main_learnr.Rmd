@@ -199,3 +199,33 @@ barplot(counts_habitat,
 
 ## Chapter 3
 
+![](images/panel 19.png){width=867px; height=500px}
+
+![](images/panel 20.png){width=867px; height=500px}
+
+![](images/panel 21.png){width=867px; height=500px}
+
+![](images/panel 22.png){width=867px; height=500px}
+
+![](images/panel 23.png){width=867px; height=500px}
+
+![](images/panel 24.png){width=867px; height=500px}
+
+![](images/panel 25.png){width=867px; height=500px}
+
+![](images/panel 26.png){width=867px; height=500px}
+
+
+## Chapter 4
+
+![](images/panel 27.png){width=867px; height=500px}
+
+![](images/panel 28.png){width=867px; height=500px}
+
+![](images/panel 29.png){width=867px; height=500px}
+
+![](images/panel 30.png){width=867px; height=500px}
+
+![](images/panel 31.png){width=867px; height=500px}
+
+
