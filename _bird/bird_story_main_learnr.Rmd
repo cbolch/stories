@@ -135,7 +135,7 @@ barplot(counts_habitat,
 
 ```
 
-```{r example4, exercise=TRUE, exercise.lines=, message=FALSE, warning=FALSE}
+```{r example4, exercise=TRUE, exercise.lines=8, message=FALSE, warning=FALSE}
 
 #Question 2
 #What type of habitat do you think fragments are?
@@ -198,8 +198,4 @@ barplot(counts_habitat,
 
 
 ## Chapter 3
-
-# ```{r ex4-hint}
-# "You will only need to write one line of code using the merge() function. Reference Chapter 3 for additional detail."
-# ```
 
