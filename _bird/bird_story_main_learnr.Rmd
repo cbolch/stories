@@ -89,13 +89,10 @@ body {background: url("images/gradient.png") repeat-x fixed}
 
 ![](images/panel 7.png){width=867px; height=500px}
 
+<strong>Before StatCat and DataDog go out into the field to collect the data, they would like to look at the data that has already been collected by the cats.Statcat has the data provided to him and he is interested in looking at the different habitat types. He first needs to load the relevant packages and read the data into R.</strong>
+
 ```{r example1, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
-#Before StatCat and DataDog goe out into the field to collect the data, 
-#they would like to look at the data that has already been collected by the cats. 
-#Statcat has the data provided to him and he is interested in looking at the 
-#different habitat types. He first needs to load the relevant packages and 
-#read the data into R. 
 
 #Download and load in the data as
 cat_species_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/cat_species.csv')
@@ -176,9 +173,9 @@ barplot(counts_habitat,
 <li>1 &#8211; Site</li>
 <li>2 &#8211; Block</li>
 <li>3 &#8211; Elevation</li>
-<li>3 &#8211; Habtitat Type</li>
-<li>3 &#8211; Ha (size of habitat area)- DataDog is collecting</li>
-<li>3 &#8211; Richness- StatCat is collecting</li>
+<li>4 &#8211; Habtitat Type</li>
+<li>5 &#8211; Ha (size of habitat area)- DataDog is collecting</li>
+<li>6 &#8211; Richness- StatCat is collecting</li>
 </ul>
 </div>
 
