@@ -20,6 +20,7 @@ library(bitops)
 library(yaml)
 library(shiny)
 library(ggpubr)
+library(car)
 knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
 ```
 
@@ -43,7 +44,7 @@ datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
 #setwd("C:/Users/cbolc/Desktop/_bird")
 statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
 datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
-statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = c("site", "block", "elevation", "habitat"))
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by=c("site", "block", "elevation", "habitat"))
 
 ```
 
@@ -52,7 +53,7 @@ statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = c("site", "bloc
 #setwd("C:/Users/cbolc/Desktop/_bird")
 statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
 datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
-statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = c("site", "block", "elevation", "habitat"))
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by=c("site", "block", "elevation", "habitat"))
 
 ```
 
@@ -111,10 +112,10 @@ counts_habitat
 
 #bar graph of table
 barplot(counts_habitat,
-        main = "Counts of Habitat Types",
-        xlab = "Habitat Types",
-        ylab = "Count",
-        ylim = c(0,30))
+        main="Counts of Habitat Types",
+        xlab="Habitat Types",
+        ylab="Count",
+        ylim=c(0,30))
 
 ```
 
@@ -252,7 +253,7 @@ head(datadog_ha_df)
 
 #Merge the two datasets together by the variables "site", "block", "elevation", and "habitat"
 statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, 
-                            by = c("site", "block", "elevation", "habitat"))
+                            by=c("site", "block", "elevation", "habitat"))
 head(statcat_datadog_df)
 
 ```
@@ -263,9 +264,9 @@ head(statcat_datadog_df)
 
 #boxplot of species richness by habitat types
 boxplot(rich ~ habitat, data=statcat_datadog_df,
-        main = "Species Richness by Habitat Type",
-        xlab = "Habitat Type",
-        ylab = "Species Richness")
+        main="Species Richness by Habitat Type",
+        xlab="Habitat Type",
+        ylab="Species Richness")
 
 ```
 
@@ -307,7 +308,7 @@ boxplot(rich ~ habitat, data=statcat_datadog_df,
 #We need to group by habitat and use IQR() in the summarise() function for calculating the IQR of rich
 statcat_datadog_df %>%
   group_by(habitat) %>%
-  summarise(IQR = IQR(rich))
+  summarise(IQR=IQR(rich))
 
 #The IQR for the "fragment" habitats is 19.7
 
@@ -326,9 +327,9 @@ statcat_datadog_df %>%
 
 #Boxplot with green boxes
 boxplot(rich ~ habitat, data=statcat_datadog_df,
-        main = "Species Richness by Habitat Type",
-        xlab = "Habitat Type",
-        ylab = "Species Richness",
+        main="Species Richness by Habitat Type",
+        xlab="Habitat Type",
+        ylab="Species Richness",
         col=(c("green")))
 
 ```
@@ -337,6 +338,86 @@ boxplot(rich ~ habitat, data=statcat_datadog_df,
 ## Chapter 6
 
 ![](images/panel 41.png){width=867px; height=500px}
+
+<strong> StatCat and DataDog are interested in looking at the relationship between species richness and habitat area (research question 2) for all habitats to figure out how the cats and the birds can live together.
+
+Research Question 2: What is the relationship between species richness and area for all habitats?
+
+One way to answer this research question is to create a scatterplot.</strong>
+
+```{r example11, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#Scatterplot with rich and ha (habitat area)
+scatterplot(rich ~ ha, data=statcat_datadog_df,
+            smooth=F,
+            main="Scatterplot of Species Richness and Habitat Area")
+
+```
+
+<strong>Comprehension Questions</strong>
+```{r example12, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#Question 1
+#What is a transformation that could be done to the x-axis to
+#create an easier graph to interpret?
+
+```
+
+```{r example12-solution}
+
+#Taking the log of habitat area would be an appropriate transformation. 
+#Use the option "log=x" in the scatterplot function after smooth. 
+
+```
+
+
+```{r example13, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#Question 2
+#Create a scatterplot with rich and log(ha)
+scatterplot(rich ~ ha, data=statcat_datadog_df,
+            smooth=F)
+title("Scatterplot of Species Richness and Habitat Area", adj=.5)
+
+```
+
+```{r example13-solution}
+
+#Scatterplot with rich and log(ha)
+scatterplot(rich ~ ha, data=statcat_datadog_df,
+            smooth=F,
+            log="x",
+            xlab="log(Ha)")
+title("Scatterplot of Species Richness and Log of Habitat Area", adj=.5)
+
+```
+
+
+```{r example14, exercise=TRUE, message=FALSE, warning=FALSE}
+
+#Question 3
+#What type of relationship do we see in the graph between log(Ha) and species richness?
+
+```
+
+```{r example14-hint}
+
+#Is the relationship positive or negative? Is it weak, moderate, or strong?
+#Look at the scatterplot points and the linear regression line. 
+
+```
+
+```{r example14-solution}
+
+#We see a strong, positive linear relationship between log(Ha) and species richness. 
+#This means that as the log of the habitat area size increases, the species richness also increases. 
+
+```
+
+
+<strong>Now, let's take a look at a similar visualization by subsetting the data to only look at fragment habitats since that habitat type had the largest IQR.</strong>
+
+
 
 ## Chapter 7
 
