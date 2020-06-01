@@ -269,7 +269,7 @@ boxplot(rich ~ habitat, data=statcat_datadog_df,
 
 ```
 
-<strong>When interpreting a boxplot, remember that the soild black line is the median value, the box indicates the values for the first and third quartiles (IQR = Q3-Q1), nd the whiskers with the dotted lines indicate the minimum and maximum values.</strong>
+<strong>When interpreting a boxplot, remember that the soild black line is the median value, the box indicates the values for the first and third quartiles (IQR = Q3-Q1), and the whiskers with the dotted lines indicate the minimum and maximum values.</strong>
 
 <strong> Comprehension Questions </strong>
 ```{r example8, exercise=TRUE, exercise.setup="setup3", exercise.lines=5, message=FALSE, warning=FALSE}
@@ -308,6 +308,8 @@ boxplot(rich ~ habitat, data=statcat_datadog_df,
 statcat_datadog_df %>%
   group_by(habitat) %>%
   summarise(IQR = IQR(rich))
+
+#The IQR for the "fragment" habitats is 19.7
 
 ```
 
