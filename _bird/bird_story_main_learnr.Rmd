@@ -43,6 +43,7 @@ datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
 #setwd("C:/Users/cbolc/Desktop/_bird")
 statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
 datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = c("site", "block", "elevation", "habitat"))
 
 ```
 
@@ -51,7 +52,7 @@ datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
 #setwd("C:/Users/cbolc/Desktop/_bird")
 statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
 datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
-statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = "site")
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = c("site", "block", "elevation", "habitat"))
 
 ```
 
@@ -249,8 +250,8 @@ datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
 head(statcat_rich_df)
 head(datadog_ha_df)
 
-#Merge the two datasets together by the variable "site"
-statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = "site")
+#Merge the two datasets together by the variables "site", "block", "elevation", and "habitat"
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = c("site", "block", "elevation", "habitat"))
 
 ```
 
