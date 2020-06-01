@@ -294,30 +294,37 @@ boxplot(rich ~ habitat, data=statcat_datadog_df,
 
 ```{r example9-hint}
 
-""
+"Try using the functions group_by(), summarise(), and IQR()."
 
 ```
 
 
 ```{r example9-solution}
 
-#The  
+#We need to group by habitat and use IQR() in the summarise() function for calculating the IQR of rich
+statcat_datadog_df %>%
+  group_by(habitat) %>%
+  summarise(IQR = IQR(rich))
 
 ```
-
 
 
 ```{r example10, exercise=TRUE, exercise.lines=5, message=FALSE, warning=FALSE}
 
 #Question 3
-#What habitat type is the largest?
+#Change the color of the boxes in the boxplot to green using the function col = c() in the boxplot code 
 
 
 ```
 
 ```{r example10-solution}
 
-#The largest habitat type is fragments. 
+#Boxplot with green boxes
+boxplot(rich ~ habitat, data=statcat_datadog_df,
+        main = "Species Richness by Habitat Type",
+        xlab = "Habitat Type",
+        ylab = "Species Richness",
+        col=(c("green")))
 
 ```
 
