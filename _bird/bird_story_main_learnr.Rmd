@@ -91,7 +91,7 @@ body {background: url("images/gradient.png") repeat-x fixed}
 
 <strong>Before StatCat and DataDog go out into the field to collect the data, they would like to look at the data that has already been collected by the cats.Statcat has the data provided to him and he is interested in looking at the different habitat types. He first needs to load the relevant packages and read the data into R.</strong>
 
-```{r example1, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
+```{r example1, exercise=TRUE, exercise.setup="setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
 
 #Download and load in the data as
@@ -102,7 +102,7 @@ head(cat_species_df)
 
 ```
 
-```{r example2, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
+```{r example2, exercise=TRUE, exercise.setup="setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
 #table of habitat types
 counts_habitat <- table(cat_species_df$habitat)
@@ -180,7 +180,7 @@ barplot(counts_habitat,
 </div>
 
 
-```{r example5, exercise=TRUE, exercise.setup = "setup1", exercise.lines=10, message=FALSE, warning=FALSE}
+```{r example5, exercise=TRUE, exercise.setup="setup1", exercise.lines=10, message=FALSE, warning=FALSE}
 
 #The setup of the data collection form is important to plan out before 
 #StatCat and DataDog start collecting data.
@@ -225,4 +225,96 @@ barplot(counts_habitat,
 
 ![](images/panel 31.png){width=867px; height=500px}
 
+## Chapter 5
 
+![](images/panel 32.png){width=867px; height=500px}
+
+![](images/panel 33.png){width=867px; height=500px}
+
+![](images/panel 34.png){width=867px; height=500px}
+
+![](images/panel 35.png){width=867px; height=500px}
+
+![](images/panel 36.png){width=867px; height=500px}
+
+<strong>StatCat and DataDog merge their datasets together and start exploring the data by looking at a species richness graph.</strong> 
+
+```{r example6, exercise=TRUE, exercise.setup="setup3", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#Read in the data from StatCat and DataDog
+statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
+datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
+
+#View the first few rows of each dataset
+head(statcat_rich_df)
+head(datadog_ha_df)
+
+#Merge the two datasets together by the variable "site"
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = "site")
+
+```
+
+<strong>Using the merged dataset, let's look at species richness by habitat type to investigate research question 1: What is the relationship between species richness and habitat types (forest, shrubs, trees, fragments, etc.)?</strong>
+
+```{r example7, exercise=TRUE, exercise.setup="setup3", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#boxplot of species richness by habitat types
+boxplot(rich ~ habitat, data=statcat_datadog_df,
+        main = "Species Richness by Habitat Type",
+        xlab = "Habitat Type",
+        ylab = "Species Richness")
+
+```
+
+<strong>When interpreting a boxplot, remember that the soild black line is the median value, the box indicates the values for the first and third quartiles (IQR = Q3-Q1), nd the whiskers with the dotted lines indicate the minimum and maximum values.</strong>
+
+<strong> Comprehension Questions </strong>
+```{r example8, exercise=TRUE, exercise.setup="setup3", exercise.lines=5, message=FALSE, warning=FALSE}
+
+#Question 1
+#What habitat type has the highest median species richness?
+
+
+```
+
+```{r example8-solution}
+
+#The habitat type with the largest median species richness is forest.
+
+```
+
+
+```{r example9, exercise=TRUE, exercise.setup="setup3", exercise.lines=5, message=FALSE, warning=FALSE}
+
+#Question 2
+#What is the IQR for the "fragment" habitat type?
+
+
+```
+
+```{r example9-solution}
+
+#The  
+
+```
+
+
+
+```{r example10, exercise=TRUE, exercise.lines=5, message=FALSE, warning=FALSE}
+
+#Question 3
+#What habitat type is the largest?
+
+
+```
+
+```{r example10-solution}
+
+#The largest habitat type is fragments. 
+
+```
+
+
+## Chapter 6
+
+## Chapter 7
