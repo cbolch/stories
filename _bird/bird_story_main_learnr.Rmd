@@ -292,6 +292,13 @@ boxplot(rich ~ habitat, data=statcat_datadog_df,
 
 ```
 
+```{r example9-hint}
+
+""
+
+```
+
+
 ```{r example9-solution}
 
 #The  
@@ -317,4 +324,24 @@ boxplot(rich ~ habitat, data=statcat_datadog_df,
 
 ## Chapter 6
 
+![](images/panel 41.png){width=867px; height=500px}
+
 ## Chapter 7
+
+![](images/panel 49.png){width=867px; height=500px}
+
+![](images/panel 50.png){width=867px; height=500px}
+
+![](images/panel 51.png){width=867px; height=500px}
+
+![](images/panel 52.png){width=867px; height=500px}
+
+![](images/panel 53.png){width=867px; height=500px}
+
+![](images/panel 54.png){width=867px; height=500px}
+
+![](images/panel 55.png){width=867px; height=500px}
+
+![](images/panel 56.png){width=867px; height=500px}
+
+![](images/panel 57.png){width=867px; height=500px}
