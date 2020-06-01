@@ -251,7 +251,9 @@ head(statcat_rich_df)
 head(datadog_ha_df)
 
 #Merge the two datasets together by the variables "site", "block", "elevation", and "habitat"
-statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by = c("site", "block", "elevation", "habitat"))
+statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, 
+                            by = c("site", "block", "elevation", "habitat"))
+head(statcat_datadog_df)
 
 ```
 
