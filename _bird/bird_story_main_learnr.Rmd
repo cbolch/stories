@@ -54,6 +54,7 @@ statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by=c("site", "block"
 statcat_rich_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/statcat_rich.csv')
 datadog_ha_df <- read.csv('C:/Users/cbolc/Desktop/stories/data/datadog_ha.csv')
 statcat_datadog_df <- merge(statcat_rich_df, datadog_ha_df, by=c("site", "block", "elevation", "habitat"))
+fragment_df <- statcat_datadog_df %>% filter(habitat=="fragment")
 
 ```
 
@@ -323,7 +324,7 @@ statcat_datadog_df %>%
 
 ```
 
-```{r example10-solution}
+```{r example10-solution, exercise=TRUE, exercise.setup="setup3", message=FALSE, warning=FALSE}
 
 #Boxplot with green boxes
 boxplot(rich ~ habitat, data=statcat_datadog_df,
@@ -347,7 +348,7 @@ One way to answer this research question is to create a scatterplot.</strong>
 
 ```{r example11, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
 
-#Scatterplot with rich and ha (habitat area)
+#Create a scatterplot with rich and ha (habitat area)
 scatterplot(rich ~ ha, data=statcat_datadog_df,
             smooth=F,
             main="Scatterplot of Species Richness and Habitat Area")
@@ -358,8 +359,7 @@ scatterplot(rich ~ ha, data=statcat_datadog_df,
 ```{r example12, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
 
 #Question 1
-#What is a transformation that could be done to the x-axis to
-#create an easier graph to interpret?
+#What is a transformation that could be done to the x-axis to create an easier graph to interpret?
 
 ```
 
@@ -374,14 +374,14 @@ scatterplot(rich ~ ha, data=statcat_datadog_df,
 ```{r example13, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
 
 #Question 2
-#Create a scatterplot with rich and log(ha)
+#Edit the following code to create a scatterplot with the transformation you identified in Question #1
 scatterplot(rich ~ ha, data=statcat_datadog_df,
             smooth=F)
 title("Scatterplot of Species Richness and Habitat Area", adj=.5)
 
 ```
 
-```{r example13-solution}
+```{r example13-solution, exercise.setup="setup4"}
 
 #Scatterplot with rich and log(ha)
 scatterplot(rich ~ ha, data=statcat_datadog_df,
@@ -409,13 +409,43 @@ title("Scatterplot of Species Richness and Log of Habitat Area", adj=.5)
 
 ```{r example14-solution}
 
-#We see a strong, positive linear relationship between log(Ha) and species richness. 
+#We see a weak to moderate, positive linear relationship between log(Ha) and species richness. 
 #This means that as the log of the habitat area size increases, the species richness also increases. 
 
 ```
 
 
 <strong>Now, let's take a look at a similar visualization by subsetting the data to only look at fragment habitats since that habitat type had the largest IQR.</strong>
+
+```{r example15, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#First, create a subset of fragment habitat only
+fragment_df <- statcat_datadog_df %>% filter(habitat=="fragment")
+head(fragment_df)
+
+```
+
+```{r example16, exercise=TRUE, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
+
+#Question 4
+#Create a scatterplot using that subset and log(Ha). Then, describe what you see in the graph.
+
+
+```
+
+
+```{r example16-solution, exercise.setup="setup4", exercise.lines=10, message=FALSE, warning=FALSE}
+
+scatterplot(rich~ha, data=fragment_df,
+            smooth=F,
+            log="x",
+            xlab="log(Ha)")
+title("Scatterplot of Only Fragment Habitats", adj=.5)
+
+#The relationship between species richness and log(Ha) is a strong, positive linear relationship.
+#The best habitat based on the data is fragments!
+
+```
 
 
 
